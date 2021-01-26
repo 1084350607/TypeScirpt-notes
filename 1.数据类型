@@ -1,0 +1,55 @@
+# 一.数据类型
+## 1.布尔值
+```ts
+let obj: boolean = false
+```
+
+## 2.数字
+```ts
+let obj: number = 2
+```
+
+## 3.字符串
+```ts
+let name: string = "bob";
+```
+
+## 4.数组
+方式一：
+```ts
+let list: number[] = [1, 2, 3];
+```
+方式二：
+```ts
+let list: Array<number> = [1, 2, 3];
+```
+
+## 5.元组
+元组类型允许表示一个已知元素`数量`和`类型`的数组
+
+各元素的类型 不必相同。 比如，你可以定义一对值分别为
+```ts
+let x: [string, number];
+
+x = ['hello', 10]; // OK
+```
+
+## 6.枚举
+`enum`类型是对JavaScript标准数据类型的一个补充。
+```ts
+enum Color {Red, Green, Blue}
+
+let c: Color = Color.Green;
+```
+手动赋值写法:
+```ts
+enum Color {Red = 1, Green = 2, Blue = 4}
+
+let c: Color = Color.Green;
+```
+
+## 7.Any
+任意类型
+```ts
+let notSure: any = 4;
+```

@@ -1,0 +1,57 @@
+# 二.函数
+## 1.定义
+```ts
+function hello():string {
+    return 'tsy'
+}
+```
+
+## 2.传参
+```ts
+function hello(name:string, age: number):string{
+    return `name : ${name}, age:${age}`
+}
+```
+## 3.可选参数
+```ts
+function hello(name:string, age?: number):string{
+    return `name : ${name}, age:${age}`
+}
+```
+警告：可选参数放在函数后面(可执行但不建议)
+
+## 4.默认参数
+
+```ts
+function hello(name: string, age: number = 20): string {
+    return `name : ${name}, age:${age}`
+}
+```
+
+## 5.剩余参数
+```ts
+// 解构运算符
+function add(...numberAry:number[]):number{
+    return numberAry.reduce((total,item) => {
+       total += item
+       return total
+    }, 0)
+}
+
+add(1,2,3,4)            // result: 10
+```
+
+## 6.函数重载
+* java中重载是指俩个同名函数,参数不同,功能不同
+* ts中的重载是指通过传入的参数不同来实现不同功能
+```ts
+function hello(name:string):string;
+function hello(name:number):number;
+function hello(name:any):any {
+    return typeof name === 'string' ? 'String' : 'other'
+}
+
+hello('string')         // ok
+hello(20)               // ok
+hello(true)             // incorrect
+```
