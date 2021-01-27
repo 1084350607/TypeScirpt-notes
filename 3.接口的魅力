@@ -1,0 +1,111 @@
+# 三.接口
+
+## 1.接口定义
+```ts
+interface Person {
+    name: string;
+    age: number;
+}
+```
+以上接口定义了一个Person类的接口,并且规定`name`为`String`类型，`age`为`nubmer`类型
+
+## 2.必填属性
+在步骤一中我们定义了一个Person, 其中name和age的定义方式都是必填属性
+
+> 需要注意的是：Ts中的接口只会检测必填属性是否存在
+
+接下来我们通过一个示例体会一下
+
+step1: 定义一个接口
+```ts
+interface Person {
+    name: string
+}
+```
+
+step2: 定义一个函数接收接口类型
+```ts
+function hello(person: Person):string {
+    return 'hello,' + person.name
+}
+```
+
+step3: 使用中多传入一个参数
+```ts
+let person = { name: 'Tsy', age: 18}
+
+console.log(hello(person))  // hello,Tsy
+```
+
+可以看到虽然我们多传入了一个参数，但程序仍然正常工作，因为Ts只会检测必传类型是否存在
+
+## 3.可选属性
+```ts
+interface Person {
+    nam?: string;
+    age: number
+}
+```
+
+## 4.只读属性
+```ts
+interface Person {
+    readonly name: string;
+}
+```
+只读属性只能在对象创建的时候修改,之后修改程序会报错
+
+下面操作创建一个都是只读属性的数组
+```ts
+let array: ReadonlyArray<number> = [1, 2, 3, 4]
+```
+
+
+## 5.属性检查
+如果在Ts中给函数传入了无用参数,那么Ts解析器会提示错误
+```ts
+interface Student {
+    name: string
+    age?: number
+}
+
+function createStudent(config: Student): { name: string, age: number } {
+    return
+}
+let stuOne = createStudent({ name: 'tsy', agee: 14 })as Student
+
+console.log(stuOne)
+```
+
+如果想要绕过解析器提示的错误
+
+有如下的俩中方法：
+
+### 5.1类型断言
+```ts
+let stuOne = createStudent({ name: 'tsy', agee: 14 } as Student)
+```
+
+### 5.2索引签名
+其实就是用一个数组将剩下的参数全部保存起来
+> 注意:如果这里我们没有传递无用参数,程序也是可以正常运行的
+> 
+> 
+::: warn
+索引签名是冒号,看起来似乎是必须传入的参数，其实是不对的
+:::
+
+```ts
+interface Student {
+    name: string
+    age?: number
+    [restArguments: string]: any
+}
+let stuOne = createStudent({ name: 'tsy', agee: 14 })
+```
+
+
+## 6.函数接口
+```ts
+
+```

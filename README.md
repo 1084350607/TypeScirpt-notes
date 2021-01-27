@@ -1,2 +1,2 @@
 # TypeScirpt-notes
-An brief typescript notes for fresher
+A brief typescript notes for fresher
