@@ -1,5 +1,5 @@
 # 三.接口
-
+在面向对象语言中，接口（Interfaces）是一个很重要的概念，它是对行为的抽象，而具体如何行动需要由类（classes）去实现（implement）。
 ## 1.接口定义
 ```ts
 interface Person {
@@ -72,7 +72,7 @@ interface Student {
 function createStudent(config: Student): { name: string, age: number } {
     return
 }
-let stuOne = createStudent({ name: 'tsy', agee: 14 })as Student
+let stuOne = createStudent({ name: 'tsy', agee: 14 }) as Student
 
 console.log(stuOne)
 ```
@@ -104,8 +104,23 @@ interface Student {
 let stuOne = createStudent({ name: 'tsy', agee: 14 })
 ```
 
+需要注意的是:
+
+一旦定义了任意属性，那么`确定属性`和`可选属性`的类型都必须是它的类型的子集：
+```ts
+interface Student {
+    name: string
+    age?: number
+    [restArguments: string]: string | number
+}
+```
 
 ## 6.函数接口
 ```ts
-
+interface changeModeFunc {
+    (target: number): boolean
+}
+let changeModeFunc: changeModeFunc = function (target){
+    return target > -1
+}
 ```
